@@ -1,0 +1,94 @@
+package javaapplication6;
+import java.util.*;
+/**
+ *
+ */
+public class JavaApplication6 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner obj=new Scanner(System.in);
+        System.out.println("enter no of consumers:");
+        int n=obj.nextInt();
+        electricity amt[]=new electricity[n];
+        for(int i=0;i<n;i++){
+            String consumer_name;
+            double pmr;
+            double cmr;
+            double unit=0;
+            int cno;
+            double billamt=0; 
+            System.out.println("enter the consumer's detail:");
+            System.out.println("enter the consumer's name:");
+            consumer_name=obj.next();
+            System.out.println("enter the consumer's number:");
+            cno=obj.nextInt();
+            System.out.println("enter previous month's bill:");
+            pmr=obj.nextDouble();
+            System.out.println("enter current's month's bill:");
+            cmr=obj.nextDouble();
+            amt[i]=new electricity(consumer_name,cno,pmr,cmr, (int) unit);
+              System.out.println("Enter D for Domestic and C for commercial:");
+        String c=obj.next();
+        switch(c)
+        {
+            case "D":
+                if(unit<=100)
+                {
+                    billamt = unit*1;
+                }
+                if(unit>100 && unit<=200)
+                {
+                   billamt = 100*1+(unit)*2.5;        
+                }
+                if(unit>200 && unit<=500)
+                {
+                    billamt = 100*1+100*2.5+(unit)*4;
+                }
+                else
+                {
+                    billamt = 100*1+100*2.5+300*4+(unit)*6;
+                }
+            case "C":
+                if(unit<=100)
+                {
+                    billamt = unit*2;
+                }
+                if(unit>100 && unit<=200)
+                {
+                   billamt = 100*2+(unit)*4.5;        
+                }
+                if(unit>200 && unit<=500)
+                {
+                    billamt = 100*2+100*4.5+(unit)*6;
+                }
+                else
+                {
+                    billamt = 100*2+100*4.5+300*6+(unit)*7;
+                }
+            }
+        System.out.println("Total bill:"+billamt);    
+    }
+    }
+}
+            
+    
+    
+
+
+class electricity{
+    String consumer_name;
+    double pmr;
+    double cmr;
+    double unit=cmr-pmr;
+    int cno;
+    electricity(String n,double pmr1,double cmr1,double cunit,int cnom){
+        consumer_name=n;
+        pmr=pmr1;
+        cmr=cmr1;
+        unit=cunit;
+        cno=cnom;
+    }
+}
